@@ -34,7 +34,7 @@ using namespace std;
 
 
 
-// 이거 왜안됨..??? => long long 이 아니여서.. 킹받네
+// 이거 왜안됨..??? => long long 이 아니여서.. 킹받네   
 
 int main(){
     ios_base::sync_with_stdio(0);
