@@ -5,6 +5,36 @@
         "list": "cpp",
         "iosfwd": "cpp",
         "stack": "cpp",
+<<<<<<< HEAD
         "tuple": "cpp"
+=======
+        "iterator": "cpp",
+        "utility": "cpp",
+        "tuple": "cpp",
+        "vector": "cpp",
+        "queue": "cpp",
+        "memory": "cpp",
+        "regex": "cpp",
+        "functional": "cpp",
+        "span": "cpp",
+        "__hash_table": "cpp",
+        "__split_buffer": "cpp",
+        "__tree": "cpp",
+        "array": "cpp",
+        "bitset": "cpp",
+        "deque": "cpp",
+        "initializer_list": "cpp",
+        "map": "cpp",
+        "random": "cpp",
+        "set": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "valarray": "cpp",
+        "ranges": "cpp",
+        "sstream": "cpp",
+        "algorithm": "cpp"
+>>>>>>> 246aacccf460463675e2ba62cfdb0338bd4496b7
     }
 }
