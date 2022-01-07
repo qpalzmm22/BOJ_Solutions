@@ -1,31 +1,60 @@
 //9935
 
 #include <iostream>
+#include <stack>
+#define pii pair<char, int>
 
 using namespace std;
 
-string str;
-string bomb;
 
-int bombVal = 0;
-int strVal[1000005];
+deque< pii > st;
 
 int main(){
+
+    string str;
+    string bomb;
+
     cin >> str;
     cin >> bomb;
-    
-    strVal[0] = 0;
-    for(int i = 1; i <= bomb.size(); i++){
-        bombVal += bomb[i];
-        strVal[i] = strVal[i - 1] + str[i];
-    }
-    
-    int s_i = 0 ;
-    int e_i = bomb.size();
-    while(1){
-        if(bomb,   == 0){
 
-        } 
+    for(int i = 0; i < str.size(); i++){
+        int prevInd;
+        if(!st.empty()){
+            prevInd = st.back().second;
+            //cout << "prev Ind : " << prevInd << "\n" ;
+            
+            if(str[i] == bomb[prevInd]){
+                prevInd++;
+            } else if (str[i] == bomb[0]){
+                prevInd = 1;
+            } else {
+                prevInd = 0;
+            }
+        } else {
+            if (str[i] == bomb[0]){
+                prevInd = 1;
+            } else { 
+                prevInd = 0;
+            }
+        }
+        //cout << "[ " << str[i] << " " << prevInd <<" ]\n";
+        st.push_back(make_pair(str[i], prevInd));
+
+        if( prevInd == bomb.size()){
+            while(prevInd--){
+                st.pop_back();
+            }
+        }
     }
+
+    if(st.empty()){
+        cout << "FRULA";
+    } else{
+        while(!st.empty()){
+            cout << st.front().first;
+            st.pop_front();
+        }
+    }
+
     return 0;
 }
