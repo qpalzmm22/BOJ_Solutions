@@ -13,23 +13,24 @@ int main(){
     }
 
     val[N] = 0;
+    arr[N] = 1001;
+    int MAX = 1;
 
     for(int i = N-1 ; i >= 0; i--){
-        int longest;
+        int longest = 0;
         for(int j = N ; j > i; j--){
+            
             if(arr[i] < arr[j]){
                 longest = max(longest, val[j] + 1) ; 
-            } else{
-                longest = max(longest, val[j]) ; 
+               // cout << "Checked : " << i  << " "<< j << "] [" << val[j] << "\n" ;
             }
         }
 
         val[i] = longest;
+        //cout << i << " : " <<  val[i] << "\n" ;
+        MAX = max(val[i], MAX);
     }
 
-    for(int i=0; i < N; i++){
-        cout << val[i] << " " ;
-    }
-    cout << val[0];
+    cout << MAX;
     return 0;
 }
