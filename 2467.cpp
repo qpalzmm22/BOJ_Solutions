@@ -5,7 +5,7 @@ using namespace std;
 
 int N;
 
-int list[100005];
+long long list[100005];
 
 
 // finds one that makes it most 0?
@@ -13,9 +13,9 @@ int search(int i, int start, int end, int negMIN, int posMIN){
 
   //cout << i << " " << start << " " << end << "\n";
 
-  int mid = (end + start) / 2;
-  int n1 = list[i];
-  int n2 = list[mid];
+  long long mid = (end + start) / 2;
+  long long n1 = list[i];
+  long long n2 = list[mid];
   
   if(start > end){
     if( abs(n1 + list[negMIN]) > abs(n1 + list[posMIN]))
@@ -38,11 +38,11 @@ int main(){
     cin >> list[i];
   }
 
-  int minAcid = MAX;
-  int n1, n2;
+  long long  minAcid = MAX;
+  long long n1, n2;
   for(int i = 0; i < N - 1; i++){
     int ind = search(i, i+1, N-1, i+1, N-1);
-    int diff = abs(list[ind] + list[i]);
+    long long  diff = abs(list[ind] + list[i]);
     if(minAcid > diff ){
       minAcid = diff;
       n1 = list[i];

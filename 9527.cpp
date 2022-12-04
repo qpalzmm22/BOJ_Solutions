@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #define ull unsigned long long
 
 /*
@@ -21,31 +22,82 @@
  */
 ull A, B;
 
+int map16[16];
+
 using namespace std;
 
 ull dp[10000];
 
-ull solve(int x){
-  cout << x << " " << "\n";
+// n is from 2^n
+ull get_ones(ull n){
+
+  if( n < 0){
+    return 0;
+  }
+  if(dp[n]){
+    //cout << "get_ones["<< n << "] : " << dp[n] <<  "\n";
+    return dp[n];
+  }
+  
+  dp[n] = ((n >> 1)) + 2 * (get_ones(n-1));
+
+  return dp[n];
+}
+
+/*
+ull solve(ull x){
+  int mask = 0xf;
+  ull sum = 0;
+  while(x > 0){
+    sum += map16[(x & mask)];
+    x = x >> 4;
+  }
+  cout << sum << " \n";
+  return sum;
+}
+*/
+
+ull solve(ull x){
   if(x == 0){
     return 0;
   }
-  int n_th_pow = 0;
-  ull num = x;
-  while( num > 0){
-    n_th_pow++;
-    num = num >> 1; 
+
+  vector < int > v;
+  ull tmp = x;
+  while(tmp > 0){
+    v.push_back(tmp & 1);
+    tmp = tmp >> 1;
   }
-  if(dp[n_th_pow] != 0){
-    return dp[n_th_pow];
- }
-  dp[n_th_pow] =  2 * dp[n_th_pow - 1] + n_th_pow;
-  return dp[n_th_pow];
+
+  ull sum = 0;
+  ull val = x;
+  for(int i = v.size() -1 ;i >= 0 ; i--){
+    if(v[i] == 1){
+      ull n = (1 << i) ;
+      sum += get_ones(i-1);
+      val = val - n;
+      sum += val + 1;
+    }
+  }
+
+  //cout << "sum : "  << sum << "\n";
+  return sum;
 }
 
+
+void fill_map(){
+  for(int i = 0 ; i < 16 ; i++){
+    map16[i] = ((i >> 3) & 1) + ((i >> 2) & 1) + ((i >> 1) & 1) + (i & 1);
+  }
+}
 int main(){
   cin >> A >> B;
+
+  //fill_map();
   cout << solve(B) - solve(A-1);
+  //for(int i = 0 ; i < 10; i++){
+  //  cout  << dp[i]<< " ";
+  //}
   return 0;
 }
 
